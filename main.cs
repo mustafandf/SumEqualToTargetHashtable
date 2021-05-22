@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 class MainClass 
 {
@@ -11,16 +11,17 @@ class MainClass
 
   public static int[] TwoSum(int[] nums, int target)
   {
-      Hashtable hashtable = new Hashtable();
-      for (int i = 0; i < nums.Length; i++)
-      {
-          var compliment = target - nums[i];
-          if (hashtable.ContainsKey(compliment))
-          {
-              return new int[] { i, (int)hashtable[compliment] };
-          }
-          hashtable.Add(nums[i], i);
-      }
-      return new int[] { };
+      Dictionary<int, int> dictionary = new Dictionary<int, int>();
+
+        for(var i = 0; i < nums.Length; i++)
+        {
+            var compliment = target - nums[i];
+            if (dictionary.ContainsKey(compliment))
+            {
+                return new int[] { i, dictionary[compliment] };
+            }
+            dictionary.Add(nums[i], i);
+        }
+        return new int[] { };
   }
 }
